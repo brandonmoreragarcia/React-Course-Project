@@ -26,9 +26,10 @@ const setIngredients = (ingredients) => {
 }
 
 //no need to export, used only here
-const fetchedIngredientsError = () => {
+const fetchedIngredientsError = (error) => {
     return {
-        type: actionTypes.FETCH_INGREDIENTS_ERROR
+        type: actionTypes.FETCH_INGREDIENTS_ERROR,
+        error:error
     }
 }
 
@@ -41,7 +42,7 @@ export const initIngredients = () => {
                 dispatch(setIngredients(response.data));
             })
             .catch(error => {
-                dispatch(fetchedIngredientsError())
+                dispatch(fetchedIngredientsError(error))
             });
 
     }

@@ -1,5 +1,5 @@
 export {
-    addIngredient, 
+    addIngredient,
     removeIngredient,
     initIngredients
 
@@ -10,3 +10,11 @@ export {
     purchaseInit,
     fetchOrders
 } from './actionsOrder';
+
+export {
+    auth,
+    logout,
+    setAuthRedirectPath,
+    authCheckState
+
+} from './actionsAuth'

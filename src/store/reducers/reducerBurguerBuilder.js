@@ -4,7 +4,8 @@ const initialState = {
     ingredients: null,
     totalPrice: 4,
     purchasable: false,
-    error: false
+    error: false,
+    buildingBurger: false
 };
 
 const INGREDIENT_PRICES = {
@@ -35,6 +36,7 @@ const reducer = (state = initialState, action) => {
 const addIngredient = (state, action) => {
     const newState = {
         ...state,
+        buildingBurger: true,
         ingredients: {
             ...state.ingredients,
             [action.ingredientName]: state.ingredients[action.ingredientName] + 1
@@ -75,15 +77,21 @@ const updatePurchaseState = (state) => {
 };
 
 const setIngredients = (state, action) => {
-    return {
-        ...state,
-        ingredients: action.ingredients,
-        totalPrice: 4,
-        error: !state.error
+    if (state.buildingBurger) {
+        return state;
+    } else {
+        return {
+            ...state,
+            ingredients: action.ingredients,
+            totalPrice: 4,
+            error: !state.error
+        }
     }
+
 }
 
 const fetchIngredientsError = (state, action) => {
+    console.log(action.error.message)
     return {
         ...state,
         error: !state.error
