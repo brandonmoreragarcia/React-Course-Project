@@ -91,7 +91,6 @@ const setIngredients = (state, action) => {
 }
 
 const fetchIngredientsError = (state, action) => {
-    console.log(action.error.message)
     return {
         ...state,
         error: !state.error
